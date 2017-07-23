@@ -7,8 +7,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.restassured.RestAssured.given;
 import static junit.framework.TestCase.assertTrue;
-import static org.hamcrest.core.StringContains.containsString;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.StringContains.containsString;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
