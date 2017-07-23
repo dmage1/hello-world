@@ -1,16 +1,23 @@
 package com.example.myproject.domain;
 
-public class Customer {
+import java.io.Serializable;
 
-    private final long id;
+public class Customer implements Serializable {
+
+    private final int id;
     private final String content;
 
-    public Customer(long id, String content) {
+    public Customer() {
+        this.id = 0;
+        this.content = "";
+    }
+
+    public Customer(int id, String content) {
         this.id = id;
         this.content = content;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
