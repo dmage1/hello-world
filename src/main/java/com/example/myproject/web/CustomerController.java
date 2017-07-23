@@ -20,6 +20,11 @@ public class CustomerController {
     @Autowired
     private CustomerService service;
 
+    @RequestMapping(value = "/ex", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.ALL_VALUE)
+    public String ex() {
+        throw new RuntimeException("Application Error");
+    }
+
     /**
      * Get Customer.
      * e.g. http://localhost:8080/customer/get/1
