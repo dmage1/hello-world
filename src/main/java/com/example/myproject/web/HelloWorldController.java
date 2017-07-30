@@ -6,10 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -33,7 +30,25 @@ public class HelloWorldController {
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     Greeting sayHello(@RequestParam(value = "name", required = false, defaultValue = "Stranger") String name) {
-        return service.sayHello(counter.incrementAndGet(), String.format(template, name));
+        LOG.info("sayHello({})", name);
+        long id = counter.incrementAndGet();
+        String content = String.format(template, name);
+        return service.sayHello(id, content);
     }
 
+    /**
+     * Say hello world.
+     * http://localhost:8080/hello-world/name/Bob
+     *
+     * @param name the name to set
+     * @return greeting
+     */
+    @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)
+    public @ResponseBody
+    Greeting sayHi(@PathVariable(value = "name") String name) {
+        LOG.info("sayHi({})", name);
+        long id = counter.incrementAndGet();
+        String content = String.format(template, name);
+        return service.sayHello(id, content);
+    }
 }

@@ -12,7 +12,7 @@ public class HelloWorldService {
     private static final Logger LOG = LoggerFactory.getLogger(HelloWorldService.class);
 
     public Greeting sayHello(long id, String content) {
-        LOG.info("sayHello()");
+        LOG.info("sayHello({}, {})", id, content);
         return new Greeting(id, content);
     }
 
