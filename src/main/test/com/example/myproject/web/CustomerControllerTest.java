@@ -1,6 +1,6 @@
 package com.example.myproject.web;
 
-import org.junit.Before;
+import io.restassured.http.ContentType;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.restassured.RestAssured.given;
 import static junit.framework.TestCase.assertTrue;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.StringContains.containsString;
 
@@ -48,6 +49,18 @@ public class CustomerControllerTest {
                 .then()
                 .body(containsString("{\"id\":1,\"content\":\"Dee\"}"))
                 .statusCode(200);
+    }
+
+    @Test
+    public void stage2_exampleRestTest() {
+        given()
+                //.contentType(ContentType.JSON)
+                //.pathParam("id", 1).when()
+                .get("/customer/get/1")
+                .then()
+                .statusCode(200)
+                .body("id", greaterThanOrEqualTo(0))
+                .body("content", equalTo("Dee"));
     }
 
     @Test

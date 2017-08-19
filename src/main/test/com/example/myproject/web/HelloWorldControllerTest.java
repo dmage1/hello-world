@@ -47,6 +47,8 @@ public class HelloWorldControllerTest {
         given().when().get("/hello-world/name/Minion")
                 .then()
                 .body(containsString("\"content\":\"Hello, Minion!\"}"))
+                .assertThat()
+                .body("content", equalTo("Hello, Minion!"))
                 .statusCode(200);
 
     }
