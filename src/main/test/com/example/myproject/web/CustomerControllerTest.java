@@ -54,9 +54,9 @@ public class CustomerControllerTest {
     @Test
     public void stage2_exampleRestTest() {
         given()
-                //.contentType(ContentType.JSON)
-                //.pathParam("id", 1).when()
-                .get("/customer/get/1")
+                .contentType(ContentType.JSON)
+                .pathParam("id", 1).when()
+                .get("/customer/get/{id}")
                 .then()
                 .statusCode(200)
                 .body("id", greaterThanOrEqualTo(0))
