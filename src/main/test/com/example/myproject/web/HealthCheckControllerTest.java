@@ -1,4 +1,4 @@
-package com.example.myproject;
+package com.example.myproject.web;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +13,7 @@ import static org.hamcrest.core.StringContains.containsString;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 //@Import(MyTestsConfiguration.class)
-public class MyTests {
+public class HealthCheckControllerTest {
 
     @Test
     public void exampleTest() {
@@ -27,24 +27,14 @@ public class MyTests {
 
     @Test
     public void restAssuredTest() {
-        given().when().get("/hello-world").then().statusCode(200);
+        given().when().get("/healthcheck").then().statusCode(200);
     }
 
     @Test
     public void getCustomerTest() {
-        given().when().get("/customer/get/1")
+        given().when().get("/healthcheck")
                 .then()
-                .body(containsString("bob"))
-                .statusCode(200);
-
-        given().when().get("/customer/get/2")
-                .then()
-                .body(containsString("sue"))
-                .statusCode(200);
-
-        given().when().get("/customer/get/2")
-                .then()
-                .assertThat().body("content", equalTo("sue"))
+                .body(containsString("Uptime"))
                 .statusCode(200);
     }
 }

@@ -61,4 +61,16 @@ public class CustomerController {
         LOG.info("save()");
         return service.saveCustomer(new Customer(id, content));
     }
+
+    /**
+     * Save Customer.
+     * e.g. http://localhost:8080/customer/delete/1
+     */
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    List<Customer> delete(@PathVariable final int id) {
+        LOG.info("save()");
+        return service.deleteCustomer(id);
+    }
+
 }

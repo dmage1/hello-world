@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -32,6 +32,18 @@ public class CustomerService {
         LOG.info("saveCustomer()");
         List<Customer> customerList = dao.getCustomers();
         customerList.add(customer);
+        dao.saveCustomerList(customerList);
+        return dao.getCustomers();
+    }
+
+    public List<Customer> deleteCustomer(int id) {
+        LOG.info("deleteCustomer({})", id);
+        List<Customer> customerList = dao.getCustomers();
+        Iterator itr = customerList.iterator();
+        while (itr.hasNext()) {
+            Customer cust = (Customer) itr.next();
+            if (cust.getId() == id) itr.remove();
+        }
         dao.saveCustomerList(customerList);
         return dao.getCustomers();
     }
