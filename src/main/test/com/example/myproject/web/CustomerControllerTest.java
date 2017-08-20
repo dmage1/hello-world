@@ -21,11 +21,11 @@ import static org.hamcrest.core.StringContains.containsString;
 public class CustomerControllerTest {
 
     private int id = 1;
-    private String firstname = "firstname";
-    private String lastname = "lastname";
-    private String address = "address";
-    private String email = "email";
-    private String phone = "phone";
+    private String firstname = "Bob";
+    private String lastname = "Minion";
+    private String address = "Gru Man Cave";
+    private String email = "gru@secret.lair";
+    private String phone = "0123456789";
 
     @Test
     public void exampleTest() {
@@ -83,7 +83,12 @@ public class CustomerControllerTest {
     public void stage2_getId() {
         given().when().get("/customer/get/1")
                 .then()
-                .body(containsString("{\"id\":1,\"firstname\":\"firstname\",\"lastname\":\"lastname\",\"address\":\"address\",\"email\":\"email\",\"phone\":\"phone\"}"))
+                .body("id", greaterThanOrEqualTo(0))
+                .body("firstname", equalTo(firstname))
+                .body("lastname", equalTo(lastname))
+                .body("address", equalTo(address))
+                .body("email", equalTo(email))
+                .body("phone", equalTo(phone))
                 .statusCode(200);
     }
 
@@ -91,7 +96,11 @@ public class CustomerControllerTest {
     public void stage3_getAll() {
         given().when().get("/customer/all")
                 .then()
-                .body(containsString("{\"id\":1,\"firstname\":\"firstname\",\"lastname\":\"lastname\",\"address\":\"address\",\"email\":\"email\",\"phone\":\"phone\"}"))
+                .body(containsString("{\"id\":1,\"firstname\":\"" + firstname
+                        + "\",\"lastname\":\"" + lastname
+                        + "\",\"address\":\"" + address
+                        + "\",\"email\":\"" + email
+                        + "\",\"phone\":\"" + phone + "\"}"))
                 .statusCode(200);
     }
 
