@@ -55,11 +55,16 @@ public class CustomerController {
      * Save Customer.
      * e.g. http://localhost:8080/customer/save/1/Bobby
      */
-    @RequestMapping(value = "/save/{id}/{content}", method = RequestMethod.GET)
+    @RequestMapping(value = "/save/id/{id}/firstname/{firstname}/lastname/{lastname}/address/{address}/email/{email}/phone/{phone}", method = RequestMethod.GET)
     @ResponseBody
-    List<Customer> save(@PathVariable final int id, @PathVariable final String content) {
+    List<Customer> save(@PathVariable final int id,
+                        @PathVariable final String firstname,
+                        @PathVariable final String lastname,
+                        @PathVariable final String address,
+                        @PathVariable final String email,
+                        @PathVariable final String phone) {
         LOG.info("save()");
-        return service.saveCustomer(new Customer(id, content));
+        return service.saveCustomer(new Customer(id, firstname, lastname, address, email, phone));
     }
 
     /**

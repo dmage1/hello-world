@@ -20,6 +20,13 @@ import static org.hamcrest.core.StringContains.containsString;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CustomerControllerTest {
 
+    private int id = 1;
+    private String firstname = "firstname";
+    private String lastname = "lastname";
+    private String address = "address";
+    private String email = "email";
+    private String phone = "phone";
+
     @Test
     public void exampleTest() {
         assertTrue(true);
@@ -45,9 +52,14 @@ public class CustomerControllerTest {
 
     @Test
     public void stage1_save() {
-        given().when().get("/customer/save/1/Dee")
+        String url = String.format("/customer/save/id/%s/firstname/%s/lastname/%s/address/%s/email/%s/phone/%s", id, firstname, lastname, address, email, phone);
+        given().when().get(url)
                 .then()
-                .body(containsString("{\"id\":1,\"content\":\"Dee\"}"))
+                .body(containsString("{\"id\":1,\"firstname\":\"" + firstname
+                        + "\",\"lastname\":\"" + lastname
+                        + "\",\"address\":\"" + address
+                        + "\",\"email\":\"" + email
+                        + "\",\"phone\":\"" + phone + "\"}"))
                 .statusCode(200);
     }
 
@@ -60,14 +72,18 @@ public class CustomerControllerTest {
                 .then()
                 .statusCode(200)
                 .body("id", greaterThanOrEqualTo(0))
-                .body("content", equalTo("Dee"));
+                .body("firstname", equalTo(firstname))
+                .body("lastname", equalTo(lastname))
+                .body("address", equalTo(address))
+                .body("email", equalTo(email))
+                .body("phone", equalTo(phone));
     }
 
     @Test
     public void stage2_getId() {
         given().when().get("/customer/get/1")
                 .then()
-                .body(containsString("{\"id\":1,\"content\":\"Dee\"}"))
+                .body(containsString("{\"id\":1,\"firstname\":\"firstname\",\"lastname\":\"lastname\",\"address\":\"address\",\"email\":\"email\",\"phone\":\"phone\"}"))
                 .statusCode(200);
     }
 
@@ -75,7 +91,7 @@ public class CustomerControllerTest {
     public void stage3_getAll() {
         given().when().get("/customer/all")
                 .then()
-                .body(containsString("{\"id\":1,\"content\":\"Dee\"}"))
+                .body(containsString("{\"id\":1,\"firstname\":\"firstname\",\"lastname\":\"lastname\",\"address\":\"address\",\"email\":\"email\",\"phone\":\"phone\"}"))
                 .statusCode(200);
     }
 

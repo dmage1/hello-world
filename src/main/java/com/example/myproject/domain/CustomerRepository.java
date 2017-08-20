@@ -19,7 +19,7 @@ public class CustomerRepository {
     private List<Customer> list = new ArrayList<>();
 
     public Customer getCustomer(int id) {
-        Customer customer = new Customer();
+        Customer customer = new Customer(id);
         List<Customer> list = getCustomers();
         for (Customer element : list) {
             if (element.getId() == id) {
@@ -47,8 +47,8 @@ public class CustomerRepository {
             } catch (IOException i) {
                 i.printStackTrace();
             } catch (ClassNotFoundException c) {
-                System.out.println("Employee class not found");
-                c.printStackTrace();
+                LOGGER.error("Employee class not found " + c.getMessage());
+                LOGGER.error(c.getStackTrace().toString());
             }
         }
         return customerList;
@@ -61,7 +61,11 @@ public class CustomerRepository {
         String fileName = "Customer.ser";
         File file = new File(fileName);
         if (file.exists()) {
-            file.delete();
+            boolean result = file.delete();
+            if (!result) {
+                String msg = String.format("File %s not deleted", fileName);
+                throw new RuntimeException(msg);
+            }
         }
         try {
             FileOutputStream fileOut = new FileOutputStream("Customer.ser");
@@ -69,9 +73,10 @@ public class CustomerRepository {
             out.writeObject(customerList);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in Customer.ser");
-        } catch (IOException i) {
-            i.printStackTrace();
+            LOGGER.info("Serialized data is saved in Customer.ser");
+        } catch (IOException ex) {
+            LOGGER.error(ex.getMessage());
+            LOGGER.error("Error description ", ex);
         }
     }
 
