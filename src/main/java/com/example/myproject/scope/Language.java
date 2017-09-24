@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * prototype: new instance is created everytime prototype bean is referenced.
  */
 @Component
-@Scope(value = "prototype") //proxyMode = ScopedProxyMode.TARGET_CLASS ???
+@Scope(value = "prototype")
 public class Language {
 
     private static final Logger LOG = LoggerFactory.getLogger(Language.class);
