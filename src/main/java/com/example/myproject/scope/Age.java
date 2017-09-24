@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 /**
  * session: one instance for an HTTP Session
  */
-@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Component
+@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class Age {
 
     private static final Logger LOG = LoggerFactory.getLogger(Age.class);

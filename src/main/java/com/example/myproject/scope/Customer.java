@@ -36,7 +36,7 @@ public class Customer {
     }
 
     public String getCustomerAddress() {
-        return address.getAddress();
+        return this.address.getAddress();
     }
 
     public void setCustomerAddress(String address) {
@@ -44,11 +44,12 @@ public class Customer {
     }
 
     public String getCustomerLanguage() {
-        return language.getLanguage();
+        return this.language.getLanguage();
     }
 
     public String setCustomerLanguage(String language) {
-        return this.language.setLanguage(language);
+        this.language.setLanguage(language);
+        return this.language.getLanguage();
     }
 
 }

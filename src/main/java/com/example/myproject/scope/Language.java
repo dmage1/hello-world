@@ -9,25 +9,24 @@ import org.springframework.stereotype.Component;
 /**
  * prototype: new instance is created everytime prototype bean is referenced.
  */
-@Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Component
+@Scope(value = "prototype") //proxyMode = ScopedProxyMode.TARGET_CLASS ???
 public class Language {
 
     private static final Logger LOG = LoggerFactory.getLogger(Language.class);
 
-    private String language = "English";
+    private String lang = "English";
 
     public Language() {
-        LOG.info("*** prototype: Create new Language: " + this.language);
+        LOG.info("*** prototype: Create new Language: " + lang);
     }
 
     public String getLanguage() {
-        return language;
+        return this.lang;
     }
 
-    public String setLanguage(String language) {
-        this.language = language;
-        return this.language;
+    public void setLanguage(String language) {
+        this.lang = language;
     }
 
 }

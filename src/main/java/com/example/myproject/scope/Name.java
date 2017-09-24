@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 /**
  * singleton: only one instance is created (default scope)
  */
-@Scope(value = "singleton")
 @Component
+@Scope(value = "singleton")
 public class Name {
 
     private static final Logger LOG = LoggerFactory.getLogger(Name.class);
