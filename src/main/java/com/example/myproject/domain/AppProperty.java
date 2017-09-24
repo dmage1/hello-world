@@ -1,15 +1,23 @@
 package com.example.myproject.domain;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.validation.annotation.Validated;
 
-import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 
-@ConfigurationProperties("app")
-public class AppProperty implements Serializable {
+@PropertySource("classpath:application.properties")
+@ConfigurationProperties(prefix = "app")
+@Validated
+// Spring Boot will attempt to validate @ConfigurationProperties classes whenever they are annotated with Spring’s @Validated
+public class AppProperty {
     private static final long serialVersionUID = 1L;
 
+    @NotNull
     private String name;
+    @NotNull
     private String version;
+    @NotNull
     private String description;
     private String message;
 
