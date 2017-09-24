@@ -63,10 +63,13 @@ public class AppProperty implements Serializable {
 
     @Override
     public String toString() {
-        return "AppProperty{" + "name='" + name + '\'' +
-                ", version='" + version + '\'' +
-                ", description='" + description + '\'' +
-                ", message='" + message + '\'' +
-                '}';
+        final StringBuilder sb = new StringBuilder("AppProperty{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", version='").append(version).append('\'');
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", message='").append(message).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
+
 }
