@@ -35,18 +35,13 @@ public class AppPropertyService {
         return appProperty.getDescription();
     }
 
-    @Value("${welcome.message}")
     // @Value is a core container feature and it does not provide the same features as type-safe Configuration Properties.
+    @Value("${welcome.message}")
     private String message;
 
     public String getMessage() {
         LOG.info("getMessage()");
         return message;
-    }
-
-    public AppProperty getAllProperties() {
-        LOG.info("getAllProperties()");
-        return appProperty;
     }
 
 }

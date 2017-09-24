@@ -76,18 +76,4 @@ public class AppPropertyController {
         return service.getMessage();
     }
 
-    /**
-     * Get Application Property Name
-     * .
-     * e.g. http://localhost:8080/property/all
-     *
-     * @return the name.
-     */
-    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.ALL_VALUE)
-    @ResponseBody
-    AppProperty getAllProperties() {
-        LOG.info("getAllProperties()");
-        return service.getAllProperties();
-    }
-
 }
