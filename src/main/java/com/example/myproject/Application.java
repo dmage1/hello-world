@@ -10,6 +10,13 @@ public class Application {
 
     private static final Logger LOG = LoggerFactory.getLogger(Application.class);
 
+    /**
+     * Running as a packaged application
+     * <p>
+     * java -jar target/hello-world-1.0-SNAPSHOT.jar
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         LOG.info("Starting Application...");
